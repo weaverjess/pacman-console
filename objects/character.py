@@ -7,7 +7,9 @@ from .character_progression import CharProgression
 class Character():
     def __init__(self, game_box, color, initial_position=None):
         self.game_box = game_box
-        self.color = color
+
+        # Part 1-1  In `character.py` please prepare the Character class so that it can recieve a `color` attribute when instanced.
+        # TODO: Implement color
 
         self.pass_over = False
         self.stopped = False
@@ -100,12 +102,14 @@ class Pacman(Character):
         self.current_progression = self.progressions.get('RIGHT')
 
 
+    # Part 3: Implement Pacman death animation
     def die(self):
         self.appear()
-        for char in ['O', 'o', '.', "'", '*', ' ']:
-            time.sleep(0.2)
-            self.draw_char(char, False)
-            self.game_box.map_box.refresh()
+        # 1. Loop through the array `['O', 'o', '.', "'", '*', ' ']` to perform the character changes that act as our animations.
+        # 2. Pause on every iteration of the loop for `0.2` seconds using `time.sleep()`
+        # 3. Use the `self.draw_char()` method to draw the character in the animation sequence, the second parameter is `False`.
+        # 4. Finally, refresh the game_box/main screen with `self.game_box.map_box.refresh()`.
+
         self.vanish()
 
 
@@ -120,6 +124,7 @@ class Ghost(Character):
 
     def __init__(self, *args, **kwargs):
         super(Ghost, self).__init__(*args, **kwargs)
+        # Part 1-2: In `character.py`, for Ghosts please set override the default value of false for the `pass_over` attribute to `True`
         self.pass_over = True
         self.wait_flag = 0
 
